@@ -86,7 +86,7 @@ const colores = ["rojo", "verde", "azul"];
 
 function mostrarColores() {
   const lista = document.querySelector("#listaColores");
-  lista.textContent = "";   // vaciamos la lista antes de volver a pintarla
+  lista.textContent = "";   
 
   colores.forEach(function (color) {
     const li = document.createElement("li");
@@ -113,7 +113,7 @@ function anadirColor() {
     return;
   }
 
-  colores.push(color);   // push añade al final
+  colores.push(color);   
   casilla.value = "";
   document.querySelector("#aviso2").classList.add("d-none");
   mostrarColores();
@@ -121,16 +121,32 @@ function anadirColor() {
 }
 
 function quitarUltimo() {
-  // TODO: si la lista está vacía, avisa con avisar2() y no hagas nada más.
-  // TODO: si no, saca el último con pop(), vuelve a pintar la lista y di en la consola qué color ha salido.
+  if (colores.length === 0) {
+    avisar2("No hay colores para quitar.");
+    console.log("Ejercicio 2: no hay colores para quitar al final.");
+    return;
+  }
+
+  const colorQuitado = colores.pop();
+  document.querySelector("#aviso2").classList.add("d-none");
+  mostrarColores();
+  console.log("Ejercicio 2: pop quitó", colorQuitado);
 }
 
 function quitarPrimero() {
-  // TODO: lo mismo que quitarUltimo(), pero sacando el primero con shift().
+  if (colores.length === 0) {
+    avisar2("No hay colores para quitar.");
+    console.log("Ejercicio 2: no hay colores para quitar al principio.");
+    return;
+  }
+
+  const colorQuitado = colores.shift();
+  document.querySelector("#aviso2").classList.add("d-none");
+  mostrarColores();
+  console.log("Ejercicio 2: shift quitó", colorQuitado);
 }
 
-mostrarColores();   // pinta los tres colores de partida nada más cargar
-
+mostrarColores();  
 
 // ============================================================
 // Ejercicio 3 · Catálogo de productos
@@ -146,7 +162,6 @@ const productos = [
   { nombre: "Auriculares con micro", precio: 59, categoria: "Audio" }
 ];
 
-// Ya está hecha: pinta en la tabla la lista de productos que le pases
 function pintarProductos(lista) {
   const cuerpo = document.querySelector("#tablaProductos");
   cuerpo.textContent = "";
@@ -170,25 +185,55 @@ function pintarProductos(lista) {
 }
 
 function mostrarProductos() {
-  // TODO: pinta todos los productos con pintarProductos() y escribe en #mensaje3 cuántos hay.
+  pintarProductos(productos);
+  document.querySelector("#mensaje3").textContent = "Hay " + productos.length + " productos.";
+  console.log("Ejercicio 3: todos los productos", productos);
 }
 
 function ordenarPorPrecio() {
-  // TODO: haz una copia del array con [...productos] y ordénala con sort() de más barato a más caro.
-  //       sort necesita una función de comparación: function (a, b) { return ... }.
-  //       ¿Por qué una copia? Explícalo en el README.
-  // TODO: pinta la copia y escribe en #mensaje3 cómo están ordenados.
+  const productosOrdenados = [...productos];
+  productosOrdenados.sort(function (a, b) {
+    return a.precio - b.precio;
+  });
+  pintarProductos(productosOrdenados);
+  document.querySelector("#mensaje3").textContent = "Productos ordenados de menor a mayor precio.";
+  console.log("Ejercicio 3: productos ordenados", productosOrdenados);
 }
 
 function filtrarCaros() {
-  // TODO: con filter(), los productos de más de 50 €. Píntalos y escribe en #mensaje3 cuántos son.
+  const productosCaros = productos.filter(function (producto) {
+    return producto.precio > 50;
+  });
+  pintarProductos(productosCaros);
+  document.querySelector("#mensaje3").textContent = "Hay " + productosCaros.length + " productos de más de 50 €.";
+  console.log("Ejercicio 3: productos de más de 50 euros", productosCaros);
 }
 
 function buscarProducto() {
-  // TODO: lee #buscarProducto (value, trim y toLowerCase). Si está vacío, avisa en #mensaje3.
-  // TODO: con find(), el primer producto cuyo nombre en minúsculas contenga ese texto (includes).
-  // TODO: find devuelve undefined si no encuentra nada: en ese caso, dilo en #mensaje3 y vacía la tabla.
-  //       Si lo encuentra, píntalo solo a él: pintarProductos([encontrado]).
+  const texto = document.querySelector("#buscarProducto").value.trim().toLowerCase();
+  const mensaje = document.querySelector("#mensaje3");
+
+  if (texto === "") {
+    mensaje.textContent = "Escribe un nombre para buscar.";
+    pintarProductos([]);
+    console.log("Ejercicio 3: búsqueda vacía");
+    return;
+  }
+
+  const encontrado = productos.find(function (producto) {
+    return producto.nombre.toLowerCase().includes(texto);
+  });
+
+  if (encontrado === undefined) {
+    mensaje.textContent = "No se ha encontrado ese producto.";
+    pintarProductos([]);
+    console.log("Ejercicio 3: producto no encontrado", texto);
+    return;
+  }
+
+  pintarProductos([encontrado]);
+  mensaje.textContent = "Producto encontrado: " + encontrado.nombre + ".";
+  console.log("Ejercicio 3: producto encontrado", encontrado);
 }
 
 mostrarProductos();   // la tabla completa nada más cargar
