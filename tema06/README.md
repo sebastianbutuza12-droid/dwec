@@ -1,17 +1,8 @@
 # Tarea 6 · Objetos y arrays
 
-**Autor:** [Tu nombre y apellidos] · Desarrollo Web en Entorno Cliente (DWEC) · 2.º DAW · Curso 2026-27
+**Autor:** Eduard Sebastian Butuza · Desarrollo Web en Entorno Cliente (DWEC) · 2.º DAW · Curso 2026-27
 
-> **Plantilla de la tarea 6.** Cómo usarla:
->
-> 1. Copia esta carpeta en tu repositorio de DWEC y cámbiale el nombre a `tema06`.
-> 2. `index.html` ya está maquetado: seis tarjetas, una por ejercicio. No cambies los `id` ni el `onclick` de los botones.
-> 3. `js/app.js` trae una función por botón con `TODO`. Ya están hechas `comoTexto()`, `pintarProductos()` y casi todo el ejercicio 2: úsalas de modelo.
-> 4. Todas las funciones con `function`: en esta tarea, sin funciones flecha.
-> 5. Sustituye las imágenes de `capturas/` por las tuyas, **con el mismo nombre**.
-> 6. Todo lo que va entre [corchetes] es un hueco: cámbialo por lo tuyo. Al terminar, borra este aviso.
-
-[Una o dos líneas: qué hay en esta carpeta y cómo se ve. Por ejemplo: abrir la carpeta en VS Code, pulsar **Go Live** y probar los botones con la consola abierta (F12).]
+En esta carpeta está la práctica de objetos y arrays con JavaScript. Para verla, abre `index.html` con **Go Live** y prueba los botones.
 
 ## Capturas
 
@@ -19,47 +10,52 @@
 
 <img src="capturas/a-pagina.png" alt="La página recién cargada con mi nombre en la navbar" width="600">
 
-[Qué se ve nada más cargar: tu nombre, los colores, la tabla de productos y las ciudades.]
+Al cargar la página aparecen mi nombre en la barra de navegación, los colores iniciales, la tabla con los productos y la lista de ciudades.
 
 ### b) Ejercicios 1 y 2: la ficha y los colores
 
 <img src="capturas/b-ej1-ej2.png" alt="La ficha de estudiante y la lista de colores" width="600">
 
-[La ficha después de cumplir años y la lista de colores después de añadir y quitar alguno. Qué método has usado para cada cosa.]
+En la ficha cumplí años y mi edad pasó a 19. En los colores usé `push()` para añadir uno, `pop()` para quitar el último y `shift()` para quitar el primero.
 
 ### c) Ejercicio 3: el catálogo ordenado por precio
 
 ![La tabla de productos ordenada por precio](capturas/c-ej3-ordenado.png)
 
-[Cómo es tu función de comparación y por qué ordenas una copia.]
+La función de comparación resta un precio al otro para ordenar los productos de menor a mayor. Ordené una copia para mantener el array original sin cambios.
 
 ### d) Ejercicio 4: las notas y la media
 
 ![Las notas con su color y la media](capturas/d-ej4-notas.png)
 
-[Cinco notas como mínimo, aprobadas y suspensas, con su media.]
+Añadí cinco notas: 4, 4.5, 6, 9 y 9. Hay notas suspensas y aprobadas. La media es 6.50.
 
 ### e) Ejercicio 5: los tres métodos seguidos
 
 ![El resultado de filter, map y reduce encadenados](capturas/e-ej5-cadena.png)
 
-[Qué hace cada paso y qué número sale al final.]
+`filter()` selecciona los números pares. `map()` calcula sus dobles y `reduce()` suma esos dobles. El resultado final es 60.
 
 ### f) Ejercicio 6: después de splice y de buscar una ciudad
 
 ![Las ciudades después de splice y una búsqueda](capturas/f-ej6-splice.png)
 
-[Qué ciudades ha quitado splice, en qué posición ha quedado la que has buscado y por qué.]
+`splice(2, 2)` quitó Málaga y Córdoba. Después busqué Jaén: `includes()` devuelve `true` e `indexOf()` devuelve 2, porque al quitar esas ciudades Jaén cambió de posición.
 
 ## Reflexión
 
-He aprendido que algunos metodos como push(),pop()y splice(), cambian el array original.
-Luego slice map y filter crean un resultado nuevo y mantienen el array original
+He aprendido que `push()`, `pop()`, `shift()` y `splice()` cambian el array original.  
+`slice()` obtiene una parte del array y deja el original igual.  
+`map()` y `filter()` devuelven arrays nuevos.  
+`reduce()` calcula un resultado, como una suma.  
+En el ejercicio 6, `splice()` quitó ciudades y `slice()` solo obtuvo una parte.  
+En el ejercicio 3 ordené una copia porque ordenar el array original lo cambiaría.
 
 ## Fuentes
 
-- [Título de la página](https://enlace-a-la-fuente)
+- [MDN: Array](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array)
+- [MDN: Trabajar con objetos](https://developer.mozilla.org/es/docs/Web/JavaScript/Guide/Working_with_objects)
 
 ## Uso de IA
 
-[Si has usado IA: qué herramienta, para qué y qué hiciste después con su respuesta. Si no la has usado, borra este apartado.]
+He usado ChatGPT para resolver dudas sobre JavaScript y completar algunas funciones
