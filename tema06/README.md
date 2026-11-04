@@ -53,7 +53,8 @@
 
 ## Reflexión
 
-[De 5 a 8 líneas: ¿qué métodos de los que has usado cambian el array original y cuáles devuelven uno nuevo? Pon como ejemplo lo que pasa en el ejercicio 6 con slice y con splice, y explica por qué en el ejercicio 3 ordenas una copia.]
+He aprendido que algunos metodos como push(),pop()y splice(), cambian el array original.
+Luego slice map y filter crean un resultado nuevo y mantienen el array original
 
 ## Fuentes
 
