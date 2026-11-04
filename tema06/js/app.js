@@ -372,29 +372,54 @@ function verCadena() {
 // ============================================================
 
 const ciudadesOriginal = ["Granada", "Sevilla", "Málaga", "Córdoba", "Jaén", "Almería", "Cádiz", "Huelva"];
-let ciudades = [...ciudadesOriginal];   // una copia: splice cambia ciudades y así podemos restaurarla
+let ciudades = [...ciudadesOriginal];
 
 function mostrarCiudades() {
-  // TODO: vacía #ciudades y pon un badge por ciudad con su posición: «0 · Granada», «1 · Sevilla»...
-  //       Pista: forEach le pasa a tu función dos datos: function (ciudad, posicion) { ... }.
+    const lista = document.querySelector("#ciudades");
+  lista.textContent = "";
+  ciudades.forEach(function (ciudad, posicion) {
+    const li = document.createElement("li");
+    li.classList.add("list-group-item");
+    const badge = document.createElement("span");
+    badge.classList.add("badge", "text-bg-secondary", "me-2");
+    badge.textContent = posicion;
+    li.append(badge);
+    li.append(" " + ciudad);
+    lista.append(li);
+  });
+  
 }
 
 function verSlice() {
-  // TODO: guarda ciudades.slice(2, 5) y escribe en #salida6 qué devuelve y cuántas ciudades siguen en el array.
+    const parte = ciudades.slice(2, 5);
+  document.querySelector("#salida6").textContent = "slice(2, 5) devuelve: " + parte.join(", ") + ". Siguen " + ciudades.length + " ciudades en el array.";
 }
 
 function hacerSplice() {
-  // TODO: si quedan menos de 3 ciudades, avisa en #salida6 de que hay que restaurar y no hagas nada más.
-  // TODO: si no, ciudades.splice(2, 2): escribe en #salida6 qué devuelve y cuántas quedan, y vuelve a pintar.
+    if (ciudades.length < 3) {
+    document.querySelector("#salida6").textContent = "Hay que restaurar las ciudades antes de quitar más.";
+    return;
+  }
+    const quitadas = ciudades.splice(2, 2);
+  document.querySelector("#salida6").textContent = "splice(2, 2) quitó: " + quitadas.join(", ") + ". Quedan " + ciudades.length + " ciudades.";
+  mostrarCiudades();
 }
 
 function restaurarCiudades() {
-  // TODO: vuelve a copiar ciudadesOriginal en ciudades y pinta.
+    ciudades = [...ciudadesOriginal];
+  mostrarCiudades();
 }
 
 function buscarCiudad() {
-  // TODO: lee #buscarCiudad (value y trim). Si está vacío, avisa.
-  // TODO: escribe en #salida6 lo que dan includes() e indexOf() con ese nombre. Si no está, indexOf da -1.
+    const casilla = document.querySelector("#buscarCiudad");
+  const nombre = casilla.value.trim();
+  const salida = document.querySelector("#salida6");
+  if (nombre === "") {
+    salida.textContent = "Escribe una ciudad para buscar.";
+    return;
+  }
+  salida.textContent = "includes(): " + ciudades.includes(nombre) + " | indexOf(): " + ciudades.indexOf(nombre);
+  
 }
 
 mostrarCiudades();
